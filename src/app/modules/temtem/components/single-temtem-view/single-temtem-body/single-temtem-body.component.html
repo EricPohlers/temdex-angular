@@ -1,0 +1,32 @@
+<div class="temtem-body grid grid-cols-4 gap-y-2 my-2">
+  <div
+    class="row-span-4 col-span-1 max-w-xs m-5 rounded-full border-4 border-amber-500 bg-gradient-to-r {{
+      types[0].fromBgColor
+    }} {{ types[types.length - 1].toBgColor }}"
+  >
+    <img
+      class="rounded-full"
+      loading="lazy"
+      [src]="
+        temtem && !isLuma
+          ? temtem.icon === ''
+            ? temtem.wikiPortraitUrlLarge
+            : environment.baseUrl + temtem.icon
+          : temtem?.lumaWikiPortraitUrlLarge
+      "
+      alt=""
+    />
+  </div>
+  <div class="right col-span-3">
+    <div class="description">
+      {{ temtem?.gameDescription }}
+    </div>
+    <div class="types flex">
+      Types:
+      <app-type-badge
+        *ngFor="let type of types; trackBy: typeTrackByFn"
+        [type]="type"
+      ></app-type-badge>
+    </div>
+  </div>
+</div>

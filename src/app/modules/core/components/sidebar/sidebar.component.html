@@ -1,0 +1,178 @@
+<div
+  class="{{
+    collapsed ? 'sm:w-14 h-10' : 'sm:w-40 h-80'
+  }} ease-in-out duration-300 sm:h-screen bg-amber-500 sticky top-0 overflow-hidden"
+>
+  <div class="flex flex-row-reverse">
+    <button
+      class="text-gray-700  cursor-pointer rounded m-2 mr-4 ease-in-out duration-500 {{
+        collapsed ? '-rotate-90 sm:rotate-180' : 'rotate-90 sm:rotate-0'
+      }}"
+      aria-expanded="true"
+      aria-controls="sidebar"
+      (click)="toggleCollapsed()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+        />
+      </svg>
+    </button>
+    <!-- <div class="flex-1 self-center pl-4">
+      <a href="#!" routerLink="/">TemDex</a>
+    </div> -->
+  </div>
+  <ul class="pt-5 {{ collapsed ? 'hidden sm:block' : 'block' }} ">
+    <li>
+      <a
+        class="flex items-center pl-4 text-sm h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-amber-400 transition duration-300 ease-in-out"
+        href="#!"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="dark"
+        routerLink="/"
+      >
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            />
+          </svg>
+        </span>
+        <span *ngIf="!collapsed"> Home </span>
+      </a>
+    </li>
+    <li class="relative">
+      <a
+        class="flex items-center pl-4 text-sm h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-amber-400 transition duration-300 ease-in-out"
+        href="#!"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="dark"
+        routerLink="/temtem"
+      >
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+            />
+          </svg>
+        </span>
+        <span *ngIf="!collapsed"> Temtem </span></a
+      >
+    </li>
+    <li class="relative">
+      <a
+        class="flex items-center pl-4 text-sm h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-amber-400 transition duration-300 ease-in-out"
+        href="#!"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="dark"
+      >
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </span>
+        <span *ngIf="!collapsed"> Location </span></a
+      >
+    </li>
+    <li class="relative">
+      <a
+        class="flex items-center pl-4 text-sm h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-amber-400 transition duration-300 ease-in-out"
+        href="#!"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="dark"
+      >
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
+            />
+          </svg>
+        </span>
+        <span *ngIf="!collapsed"> Types </span></a
+      >
+    </li>
+    <li class="relative">
+      <a
+        class="flex items-center pl-4 text-sm h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-amber-400 transition duration-300 ease-in-out"
+        href="#!"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="dark"
+      >
+        <span
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
+            />
+          </svg>
+        </span>
+        <span *ngIf="!collapsed"> Items & Gear </span></a
+      >
+    </li>
+  </ul>
+</div>

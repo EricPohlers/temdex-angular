@@ -1,0 +1,11 @@
+<span
+  class="m-1 flex pr-2 items-center max-h-10 border-2 border-stone-300 rounded-full text-white {{
+    type.badgeColor
+  }}
+  shrink"
+  ><img
+    class="max-h-8 shrink"
+    alt="{{ type.name }}"
+    [src]="environment.baseUrl + type.icon"
+  />{{ type.name }}</span
+>

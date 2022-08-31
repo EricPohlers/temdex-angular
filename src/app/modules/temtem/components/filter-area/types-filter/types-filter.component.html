@@ -1,0 +1,11 @@
+<div class="flex flex-wrap">
+  <button
+    *ngFor="let type of types; trackBy: typeTrackByFn"
+    (click)="updateSelectedTypes(type)"
+  >
+    <app-type-badge
+      [ngClass]="{ 'brightness-50': !selectedTypes.includes(type) }"
+      [type]="type"
+    ></app-type-badge>
+  </button>
+</div>
