@@ -18,15 +18,15 @@
     />
   </div>
   <div class="right col-span-3">
-    <div class="description">
-      {{ temtem?.gameDescription }}
-    </div>
     <div class="types flex">
-      Types:
+      {{ types.length > 1 ? "Types" : "Type" }}:
       <app-type-badge
         *ngFor="let type of types; trackBy: typeTrackByFn"
         [type]="type"
       ></app-type-badge>
+    </div>
+    <div class="description">
+      {{ temtem?.gameDescription }}
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ import { MainComponent } from './modules/main/components/main/main.component';
 import { TemtemRouteComponent } from './modules/temtem/components/temtem-route/temtem-route.component';
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
+  { path: '', component: TemtemRouteComponent },
   { path: 'temtem', component: TemtemRouteComponent },
 ];
 

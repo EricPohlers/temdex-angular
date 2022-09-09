@@ -1,13 +1,5 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
-import { Type } from 'src/app/modules/shared/models/interfaces';
-import { TypeService } from 'src/app/modules/shared/services/type.service';
-import { environment } from 'src/environments/environment';
+import { Component, Input } from '@angular/core';
+
 import { Temtem } from '../../models/interfaces';
 
 @Component({
