@@ -29,7 +29,6 @@ export class SingleTemtemBodyComponent implements OnChanges {
   setTypes() {
     this.types = [];
     if (this.temtem) {
-      console.log(this.temtem);
       this.temtem.types.map((type) => {
         this.types.push(this.typeService.getTypeByName(type));
       });

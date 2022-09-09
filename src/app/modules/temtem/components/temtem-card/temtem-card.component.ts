@@ -11,6 +11,7 @@ import { Temtem } from '../../models/interfaces';
 })
 export class TemtemCardComponent implements OnInit {
   @Input() temtem!: Temtem;
+  @Input() showTemtemCallbackFunction!: (args: any) => void;
   environment = environment;
   types: Type[] = [];
   isLuma: boolean = false;

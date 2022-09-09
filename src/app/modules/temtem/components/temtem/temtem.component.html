@@ -13,7 +13,7 @@
   <app-temtem-card
     *ngFor="let temtem of temtemsList; trackBy: trackByFn"
     [temtem]="temtem"
-    (click)="onTemtemClick(temtem)"
+    [showTemtemCallbackFunction]="onTemtemClick"
   ></app-temtem-card>
 </div>
 <app-single-temtem-view [temtem]="selectedTemtem"></app-single-temtem-view>

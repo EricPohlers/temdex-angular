@@ -72,11 +72,10 @@ export class TemtemComponent implements OnInit {
     //   });
   }
 
-  onTemtemClick(temtem: Temtem) {
-    // console.log(temtem);
+  onTemtemClick = (temtem: Temtem) => {
     this.store.dispatch(setSelectedTemtem({ selectedTemtem: temtem }));
     this.singleTemtemViewComponent.showModal = true;
-  }
+  };
 
   trackByFn(id: number, temtem: Temtem): number {
     return temtem.number;
