@@ -1,5 +1,7 @@
-<div class="temtem-body grid grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-5">
-  <div
+<div
+  class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
+>
+  <!-- <div
     class=" col-span-1 self-center h-fit w-fit justify-self-center m-5 rounded-full border-4 border-amber-500 bg-gradient-to-r {{
       types[0].fromBgColor
     }} {{ types[types.length - 1].toBgColor }}"
@@ -16,18 +18,29 @@
       "
       alt=""
     />
+  </div> -->
+  <div
+    class="temtem-full-view col-span-1 flex max-h-60 bg-gray-100 sm:mr-3 rounded-lg"
+  >
+    <img
+      class="max-h-60 p-1 w-auto mx-auto self-center"
+      loading="lazy"
+      [src]="temtem?.wikiRenderAnimatedUrl"
+    />
   </div>
   <div class="right sm:col-span-3 flex flex-col">
-    <div class="types flex items-center pb-2">
-      {{ types.length > 1 ? "Types" : "Type" }}:
-      <app-type-badge
-        *ngFor="let type of types; trackBy: typeTrackByFn"
-        [type]="type"
-      ></app-type-badge>
-    </div>
-    <div class="description sm:pr-3 pr-1">
+    <div class="description bg-slate-50 p-5 mb-2 shadow-md">
       {{ temtem?.gameDescription }}
     </div>
-    <!-- <div *ngIf="temtem?.evolution?.evolves" class="">Evolution:</div> -->
+    <div class="shadow-md p-5 mb-2">
+      <div class="types flex items-center">
+        {{ types.length > 1 ? "Types" : "Type" }}:
+        <app-type-badge
+          *ngFor="let type of types; trackBy: typeTrackByFn"
+          [type]="type"
+        ></app-type-badge>
+      </div>
+      <!-- <div *ngIf="temtem?.evolution?.evolves" class="">Evolution:</div> -->
+    </div>
   </div>
 </div>
