@@ -15,6 +15,7 @@ export class SingleTemtemBodyComponent implements OnChanges {
   showModal: boolean = false;
   isLuma: boolean = false;
   environment = environment;
+  isLoading: boolean = true;
 
   constructor(private typeService: TypeService) {}
 
@@ -24,6 +25,15 @@ export class SingleTemtemBodyComponent implements OnChanges {
 
   toggleShowModal() {
     this.showModal = !this.showModal;
+  }
+
+  onLoad() {
+    this.isLoading = false;
+  }
+
+  onLuma() {
+    this.isLuma = !this.isLuma;
+    this.isLoading = true;
   }
 
   setTypes() {

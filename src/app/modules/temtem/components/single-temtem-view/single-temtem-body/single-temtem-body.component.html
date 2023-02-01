@@ -2,12 +2,44 @@
   class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
   <div
-    class="temtem-full-view col-span-1 flex max-h-60 bg-gray-100 sm:mr-3 rounded-lg"
+    class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg"
   >
+    <div class="absolute w-full">
+      <div
+        class="card-header-buttons flex justify-end pl-5 pt-2"
+        *ngIf="temtem?.wikiRenderStaticLumaUrl !== ''"
+      >
+        <button
+          class="mx-1 px-2 rounded-lg text-sm"
+          [ngClass]="{ 'bg-white': !isLuma, 'bg-stone-400': isLuma }"
+          (click)="onLuma(); $event.stopPropagation()"
+        >
+          Orig.
+        </button>
+        <button
+          class="mx-1 px-2 rounded-lg text-sm"
+          [ngClass]="{ 'bg-white': isLuma, 'bg-stone-400': !isLuma }"
+          (click)="onLuma(); $event.stopPropagation()"
+        >
+          Luma
+        </button>
+      </div>
+    </div>
+    <div *ngIf="isLoading" class="w-64 max-h-32 mx-auto self-center">
+      loading...
+    </div>
     <img
-      class="max-h-32 sm:max-h-60 p-1 w-auto mx-auto self-center"
+      [ngStyle]="{
+        visibility: isLoading ? 'hidden' : ''
+      }"
+      (load)="onLoad()"
+      class="max-h-32 sm:max-h-60 p-1 pt-7 w-auto mx-auto self-center"
       loading="lazy"
-      [src]="temtem?.wikiRenderAnimatedUrl"
+      [src]="
+        !isLuma
+          ? temtem?.wikiRenderAnimatedUrl
+          : temtem?.wikiRenderAnimatedLumaUrl
+      "
     />
   </div>
   <div class="right sm:col-span-3 flex flex-col">

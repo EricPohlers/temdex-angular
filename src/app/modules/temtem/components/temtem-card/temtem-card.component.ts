@@ -14,7 +14,6 @@ export class TemtemCardComponent implements OnInit {
   @Input() showTemtemCallbackFunction!: (args: any) => void;
   environment = environment;
   types: Type[] = [];
-  isLuma: boolean = false;
 
   constructor(private typeService: TypeService) {}
 

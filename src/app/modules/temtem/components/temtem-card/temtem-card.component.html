@@ -11,42 +11,14 @@
   (click)="showTemtemCallbackFunction(temtem)"
 >
   <div class="relative w-full">
-    <!-- <div class="absolute w-full">
-      <div class="card-header flex justify-between pl-5 pt-2">
-        <div class="number text-gray-500">
-          {{ temtem.number }}
-        </div>
-        <div
-          class="card-header-buttons"
-          *ngIf="temtem.lumaWikiPortraitUrlLarge !== ''"
-        >
-          <button
-            class="mx-1 px-2 rounded-lg text-sm"
-            [ngClass]="{ 'bg-white': !isLuma, 'bg-stone-400': isLuma }"
-            (click)="isLuma = false; $event.stopPropagation()"
-          >
-            Orig.
-          </button>
-          <button
-            class="mx-1 px-2 rounded-lg text-sm"
-            [ngClass]="{ 'bg-white': isLuma, 'bg-stone-400': !isLuma }"
-            (click)="isLuma = true; $event.stopPropagation()"
-          >
-            Luma
-          </button>
-        </div>
-      </div>
-    </div> -->
     <div class="card-image">
       <img
         class="w-full -mb-11"
         loading="lazy"
         [src]="
-          !isLuma
-            ? temtem.icon === ''
-              ? temtem.wikiPortraitUrlLarge
-              : environment.baseUrl + temtem.icon
-            : temtem.lumaWikiPortraitUrlLarge
+          temtem.icon === ''
+            ? temtem.wikiPortraitUrlLarge
+            : environment.baseUrl + temtem.icon
         "
         alt=""
       />
