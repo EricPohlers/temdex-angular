@@ -1,29 +1,11 @@
 <div
   class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
-  <!-- <div
-    class=" col-span-1 self-center h-fit w-fit justify-self-center m-5 rounded-full border-4 border-amber-500 bg-gradient-to-r {{
-      types[0].fromBgColor
-    }} {{ types[types.length - 1].toBgColor }}"
-  >
-    <img
-      class="rounded-full max-h-40 sm:max-h-60"
-      loading="lazy"
-      [src]="
-        temtem && !isLuma
-          ? temtem.icon === ''
-            ? temtem.wikiPortraitUrlLarge
-            : environment.baseUrl + temtem.icon
-          : temtem?.lumaWikiPortraitUrlLarge
-      "
-      alt=""
-    />
-  </div> -->
   <div
     class="temtem-full-view col-span-1 flex max-h-60 bg-gray-100 sm:mr-3 rounded-lg"
   >
     <img
-      class="max-h-60 p-1 w-auto mx-auto self-center"
+      class="max-h-32 sm:max-h-60 p-1 w-auto mx-auto self-center"
       loading="lazy"
       [src]="temtem?.wikiRenderAnimatedUrl"
     />
