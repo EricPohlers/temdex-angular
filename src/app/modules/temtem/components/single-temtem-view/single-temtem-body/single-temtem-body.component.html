@@ -6,7 +6,7 @@
   >
     <div class="absolute w-full">
       <div
-        class="card-header-buttons flex justify-end pl-5 pt-2"
+        class="card-header-buttons flex justify-end pt-2"
         *ngIf="temtem?.wikiRenderStaticLumaUrl !== ''"
       >
         <button
@@ -33,7 +33,7 @@
         visibility: isLoading ? 'hidden' : ''
       }"
       (load)="onLoad()"
-      class="max-h-32 sm:max-h-60 p-1 pt-7 w-auto mx-auto self-center"
+      class="max-h-32 sm:max-h-60 p-1 sm:pt-7 w-auto mx-auto self-center"
       loading="lazy"
       [src]="
         !isLuma
