@@ -1,5 +1,5 @@
 <div
-  class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
+  class="temtem-body grid content-center grid-cols-2 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
   <div
     class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg"
@@ -42,10 +42,7 @@
       "
     />
   </div>
-  <div class="right sm:col-span-3 flex flex-col">
-    <div class="description bg-slate-50 p-5 mb-2 shadow-md">
-      {{ temtem?.gameDescription }}
-    </div>
+  <div class="right cols-span-2 sm:col-span-3 flex flex-col">
     <div class="shadow-md p-5 mb-2">
       <div class="types flex items-center">
         {{ types.length > 1 ? "Types" : "Type" }}:
@@ -56,5 +53,8 @@
       </div>
       <!-- <div *ngIf="temtem?.evolution?.evolves" class="">Evolution:</div> -->
     </div>
+  </div>
+  <div class="description col-span-4 bg-slate-50 p-5 mb-2 shadow-md">
+    {{ temtem?.gameDescription }}
   </div>
 </div>
