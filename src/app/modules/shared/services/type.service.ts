@@ -109,7 +109,7 @@ export const types: Type[] = [
   providedIn: 'root',
 })
 export class TypeService {
-  constructor(private http: HttpClient, private store: Store) {}
+  constructor(private store: Store) {}
 
   getTypes() {
     return types;
