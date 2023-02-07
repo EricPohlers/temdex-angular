@@ -51,15 +51,18 @@
           [type]="type"
         ></app-type-badge>
       </div>
-      <div class="details">Height: {{ temtem?.details?.height?.cm }}cm</div>
-      <div class="details">Weight: {{ temtem?.details?.weight?.kg }}kg</div>
+      <div class="details">Height: {{ temtem?.details?.height?.cm }} cm</div>
+      <div class="details">Weight: {{ temtem?.details?.weight?.kg }} kg</div>
     </div>
     <div
       *ngIf="evolutionTree.length > 0"
-      class="evolution flex px-5 py-2 h-full rounded-lg ring-2 ring-gray-200"
+      class="evolution flex px-5 py-2 h-full rounded-lg ring-2 ring-gray-200 items-center"
     >
       Evolution:
-      <div *ngFor="let evo of evolutionTree" class="flex px-5 py-2">
+      <div
+        *ngFor="let evo of evolutionTree"
+        class="flex px-5 py-2 items-center text-sm"
+      >
         lvl {{ evo.evolution.level }}
         <img
           [ngStyle]="{
