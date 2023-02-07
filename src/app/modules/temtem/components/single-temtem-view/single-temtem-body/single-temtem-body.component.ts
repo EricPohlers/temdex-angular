@@ -43,6 +43,7 @@ export class SingleTemtemBodyComponent implements OnInit, OnChanges {
     this.setTypes();
     if (this.temtem?.evolution.evolves) {
       this.evolutionTree = this.getEvolution();
+      console.log(this.evolutionTree);
     }
   }
 
@@ -65,9 +66,17 @@ export class SingleTemtemBodyComponent implements OnInit, OnChanges {
 
   getEvolution(): Temtem[] {
     if (this.temtem?.evolution) {
-      return this.temtem.evolution.evolutionTree.map((evo) =>
-        this.getTemtem(evo.number)
-      );
+      return [
+        ...new Set(
+          this.temtem.evolution.evolutionTree
+            .filter((element, index) => {
+              return (
+                this.temtem?.evolution.evolutionTree.indexOf(element) === index
+              );
+            })
+            .map((evo) => this.getTemtem(evo.number))
+        ),
+      ];
     }
     return [];
   }
