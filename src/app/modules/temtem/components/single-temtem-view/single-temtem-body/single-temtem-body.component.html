@@ -1,12 +1,12 @@
 <div
-  class="temtem-body grid content-center grid-cols-2 sm:grid-cols-4 gap-y-2 my-2 px-3"
+  class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
   <div
     class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg ring-2 ring-amber-500"
   >
     <div id="temtem-image" class="absolute w-full">
       <div
-        class="card-header-buttons flex justify-end pl-5 pt-2"
+        class="card-header-buttons flex justify-end pt-2"
         *ngIf="temtem?.wikiRenderStaticLumaUrl !== ''"
       >
         <button
@@ -33,7 +33,7 @@
         visibility: isLoading ? 'hidden' : ''
       }"
       (load)="onLoad()"
-      class="max-h-32 sm:max-h-60 p-1 pt-7 w-auto mx-auto self-center"
+      class="max-h-32 sm:max-h-60 p-1 sm:pt-7 w-auto mx-auto self-center"
       loading="lazy"
       [src]="
         !isLuma
@@ -42,8 +42,8 @@
       "
     />
   </div>
-  <div class="right cols-span-2 sm:col-span-3 self-stretch flex flex-col">
-    <div class="px-5 py-2 h-full rounded-lg ring-2 ring-gray-200">
+  <div class="right cols-span-1 sm:col-span-3 self-stretch flex flex-col">
+    <div class="px-5 mb-2 py-2 h-full rounded-lg ring-2 ring-gray-200">
       <div class="types flex items-center">
         {{ types.length > 1 ? "Types" : "Type" }}:
         <app-type-badge
@@ -54,9 +54,34 @@
       <div class="details">Height: {{ temtem?.details?.height?.cm }}cm</div>
       <div class="details">Weight: {{ temtem?.details?.weight?.kg }}kg</div>
     </div>
-    <div *ngIf="temtem?.evolution?.evolves" class="evolution">Evolution:</div>
+    <div
+      *ngIf="evolutionTree.length > 0"
+      class="evolution flex px-5 py-2 h-full rounded-lg ring-2 ring-gray-200"
+    >
+      Evolution:
+      <div *ngFor="let evo of evolutionTree" class="flex px-5 py-2">
+        lvl {{ evo.evolution.level }}
+        <img
+          [ngStyle]="{
+            visibility: isLoadingEvolution ? 'hidden' : ''
+          }"
+          [ngClass]=""
+          (load)="onLoadEvolution()"
+          class="max-h-10 sm:max-h-20 w-auto mx-auto self-center cursor-pointer my-2"
+          loading="lazy"
+          (click)="onSetSelectedTemtem(evo)"
+          [src]="
+            evo.icon === ''
+              ? evo.wikiPortraitUrlLarge
+              : environment.baseUrl + evo.icon
+          "
+        />
+      </div>
+    </div>
   </div>
-  <div class="description col-span-4 bg-gray-50 p-5 mb-2 rounded-lg">
+  <div
+    class="description col-span-1 sm:col-span-4 bg-gray-50 p-5 mb-2 rounded-lg"
+  >
     {{ temtem?.gameDescription }}
   </div>
 </div>

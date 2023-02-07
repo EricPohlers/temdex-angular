@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectAllTemtems } from '../../core/store/temtem/temtem.selectors';
 import { Type } from '../../shared/models/interfaces';
 import { Temtem } from '../models/interfaces';
 
@@ -6,6 +8,8 @@ import { Temtem } from '../models/interfaces';
   providedIn: 'root',
 })
 export class TemtemService {
+  constructor(private store: Store) {}
+
   filterTemtems(
     searchTerm: string,
     selectedTypes: ReadonlyArray<Type>,
@@ -32,5 +36,15 @@ export class TemtemService {
         temtem.types.includes(selectedType.name)
       ).length > 0
     );
+  }
+
+  getTemtem(temtemNr: number) {
+    let returnValue!: Temtem;
+    this.store.select(selectAllTemtems).subscribe((state) => {
+      returnValue = state.filter((temtem) => {
+        return temtem.number === temtemNr;
+      })[0];
+    });
+    return returnValue;
   }
 }
