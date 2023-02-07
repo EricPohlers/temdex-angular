@@ -2,7 +2,7 @@
   class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
   <div
-    class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg ring-2 ring-amber-500"
+    class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg border-2 border-amber-500"
   >
     <div id="temtem-image" class="absolute w-full">
       <div
@@ -43,7 +43,7 @@
     />
   </div>
   <div class="right cols-span-1 sm:col-span-3 self-stretch flex flex-col">
-    <div class="px-5 mb-2 py-2 h-full rounded-lg ring-2 ring-gray-200">
+    <div class="px-5 mb-2 py-2 h-full rounded-lg border-2 border-gray-200">
       <div class="types flex items-center">
         {{ types.length > 1 ? "Types" : "Type" }}:
         <app-type-badge
@@ -56,21 +56,23 @@
     </div>
     <div
       *ngIf="evolutionTree.length > 0"
-      class="evolution flex px-5 py-2 h-full rounded-lg ring-2 ring-gray-200 items-center"
+      class="evolution flex px-5 py-2 h-full rounded-lg border-2 border-gray-200 items-center"
     >
       Evolution:
       <div
         *ngFor="let evo of evolutionTree"
-        class="flex px-5 py-2 items-center text-sm"
+        class="flex flex-col px-5 py-2 items-center text-sm"
       >
         lvl {{ evo.evolution.level }}
         <img
           [ngStyle]="{
             visibility: isLoadingEvolution ? 'hidden' : ''
           }"
-          [ngClass]=""
+          [ngClass]="
+            evo.number === temtem?.number ? 'border-2 border-amber-400' : ''
+          "
           (load)="onLoadEvolution()"
-          class="max-h-10 sm:max-h-20 w-auto mx-auto self-center cursor-pointer my-2"
+          class="max-h-10 sm:max-h-20 w-auto mx-auto self-center cursor-pointer bg-slate-200 rounded-full"
           loading="lazy"
           (click)="onSetSelectedTemtem(evo)"
           [src]="
