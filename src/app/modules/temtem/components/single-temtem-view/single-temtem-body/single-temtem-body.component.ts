@@ -43,7 +43,6 @@ export class SingleTemtemBodyComponent implements OnInit, OnChanges {
     this.setTypes();
     if (this.temtem?.evolution.evolves) {
       this.evolutionTree = this.getEvolution();
-      console.log(this.evolutionTree);
     }
   }
 
