@@ -43,32 +43,49 @@
     />
   </div>
   <div class="right cols-span-1 sm:col-span-3 self-stretch flex flex-col">
-    <div class="px-5 py-2 h-full rounded-lg border-2 border-gray-200">
-      <div class="details types flex items-center">
-        {{ types.length > 1 ? "Types" : "Type" }}:
-        <app-type-badge
-          *ngFor="let type of types; trackBy: typeTrackByFn"
-          [type]="type"
-        ></app-type-badge>
-      </div>
-      <div class="details height">
-        Height: {{ temtem?.details?.height?.cm }} cm
-      </div>
-      <div class="details weight">
-        Weight: {{ temtem?.details?.weight?.kg }} kg
-      </div>
-      <div class="details gender flex items-center">
-        Gender:
-        <div
-          class="gender female mx-1"
-          *ngIf="(temtem?.genderRatio)!.female > 0"
-        >
-          <span class="text-lg font-bold">{{ "\&#9792;" }}</span>
-          <span class="text-xs">({{ temtem!.genderRatio.female }}%)</span>
+    <div class="right upper grid grid-cols-1 sm:grid-cols-2 gap-2 h-full">
+      <div
+        class="px-5 py-2 h-full rounded-lg border-2 border-gray-200 col-span-1"
+      >
+        <div class="details types flex items-center justify-between">
+          {{ types.length > 1 ? "Types" : "Type" }}:
+          <app-type-badge
+            *ngFor="let type of types; trackBy: typeTrackByFn"
+            [type]="type"
+          ></app-type-badge>
         </div>
-        <div class="gender male mx-1" *ngIf="(temtem?.genderRatio)!.male > 0">
-          <span class="text-lg font-bold">{{ "\&#9794;" }}</span>
-          <span class="text-xs">({{ temtem!.genderRatio.male }}%)</span>
+        <div class="details height flex justify-between">
+          <span>Height:</span> {{ temtem?.details?.height?.cm }} cm
+        </div>
+        <div class="details weight flex justify-between">
+          <span>Weight:</span> {{ temtem?.details?.weight?.kg }} kg
+        </div>
+        <div class="details gender flex items-center justify-between">
+          <span>Gender:</span>
+          <div class="flex">
+            <div
+              class="gender female mx-1"
+              *ngIf="(temtem?.genderRatio)!.female > 0"
+            >
+              <span class="text-lg font-bold">{{ "\&#9792;" }}</span>
+              <span class="text-xs">({{ temtem!.genderRatio.female }}%)</span>
+            </div>
+            <div
+              class="gender male mx-1"
+              *ngIf="(temtem?.genderRatio)!.male > 0"
+            >
+              <span class="text-lg font-bold">{{ "\&#9794;" }}</span>
+              <span class="text-xs">({{ temtem!.genderRatio.male }}%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="px-5 py-2 h-full rounded-lg border-2 border-gray-200 col-span-1"
+      >
+        <span>Locations:</span>
+        <div *ngFor="let location of temtem?.locations">
+          {{ location.location }}
         </div>
       </div>
     </div>
