@@ -2,9 +2,9 @@
   class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
 >
   <div
-    class="relative temtem-full-view col-span-1 flex max-h-64 bg-gray-100 sm:mr-3 rounded-lg border-2 border-amber-500"
+    class="relative temtem-full-view col-span-1 flex bg-gray-100 sm:mr-3 rounded-lg border-2 border-amber-500 h-full"
   >
-    <div id="temtem-image" class="absolute w-full">
+    <div id="temtem-image" class="absolute w-full max-h-64">
       <div
         class="card-header-buttons flex justify-end pt-2"
         *ngIf="temtem?.wikiRenderStaticLumaUrl !== ''"
@@ -43,27 +43,45 @@
     />
   </div>
   <div class="right cols-span-1 sm:col-span-3 self-stretch flex flex-col">
-    <div class="px-5 mb-2 py-2 h-full rounded-lg border-2 border-gray-200">
-      <div class="types flex items-center">
+    <div class="px-5 py-2 h-full rounded-lg border-2 border-gray-200">
+      <div class="details types flex items-center">
         {{ types.length > 1 ? "Types" : "Type" }}:
         <app-type-badge
           *ngFor="let type of types; trackBy: typeTrackByFn"
           [type]="type"
         ></app-type-badge>
       </div>
-      <div class="details">Height: {{ temtem?.details?.height?.cm }} cm</div>
-      <div class="details">Weight: {{ temtem?.details?.weight?.kg }} kg</div>
+      <div class="details height">
+        Height: {{ temtem?.details?.height?.cm }} cm
+      </div>
+      <div class="details weight">
+        Weight: {{ temtem?.details?.weight?.kg }} kg
+      </div>
+      <div class="details gender flex items-center">
+        Gender:
+        <div
+          class="gender female mx-1"
+          *ngIf="(temtem?.genderRatio)!.female > 0"
+        >
+          <span class="text-lg font-bold">{{ "\&#9792;" }}</span>
+          <span class="text-xs">({{ temtem!.genderRatio.female }}%)</span>
+        </div>
+        <div class="gender male mx-1" *ngIf="(temtem?.genderRatio)!.male > 0">
+          <span class="text-lg font-bold">{{ "\&#9794;" }}</span>
+          <span class="text-xs">({{ temtem!.genderRatio.male }}%)</span>
+        </div>
+      </div>
     </div>
     <div
       *ngIf="evolutionTree.length > 0"
-      class="evolution flex px-5 py-2 h-full rounded-lg border-2 border-gray-200 items-center"
+      class="evolution flex px-5 py-2 h-full mt-2 rounded-lg border-2 border-gray-200 items-center"
     >
       Evolution:
       <div
         *ngFor="let evo of evolutionTree"
         class="flex flex-col px-5 py-2 items-center text-sm"
       >
-        lvl {{ evo.evolution.level }}
+        {{ evo.evolution.level }}
         <img
           [ngStyle]="{
             visibility: isLoadingEvolution ? 'hidden' : ''
