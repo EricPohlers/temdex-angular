@@ -1,0 +1,22 @@
+Evolution:
+<div
+  *ngFor="let evo of evolutions"
+  class="flex sm:flex-col px-5 items-center text-sm"
+>
+  <span class="mx-2">{{ evo.evolution.level }}</span>
+  <img
+    [ngStyle]="{
+      visibility: isLoadingEvolution ? 'hidden' : ''
+    }"
+    [ngClass]="evo.number === temtemNr ? 'border-2 border-amber-400' : ''"
+    (load)="onLoadEvolution()"
+    class="max-h-10 sm:max-h-20 w-auto mx-auto self-center cursor-pointer bg-slate-200 rounded-full"
+    loading="lazy"
+    (click)="onSetSelectedTemtemCallback(evo)"
+    [src]="
+      evo.icon === ''
+        ? evo.wikiPortraitUrlLarge
+        : environment.baseUrl + evo.icon
+    "
+  />
+</div>

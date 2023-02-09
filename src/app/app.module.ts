@@ -22,6 +22,11 @@ import { TemtemEffects } from './modules/core/store/temtem/temtem.effetcs';
 import { temtemFeature } from './modules/core/store/temtem/temtem.reducer';
 import { SingleTemtemViewComponent } from './modules/temtem/components/single-temtem-view/single-temtem-view.component';
 import { SingleTemtemBodyComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-body.component';
+import { SingleTemtemDetailsComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-details/single-temtem-details.component';
+import { SingleTemtemImageComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-image/single-temtem-image.component';
+import { SingleTemtemLocationsComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-locations/single-temtem-locations.component';
+import { SingleTemtemDescriptionComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-description/single-temtem-description.component';
+import { SingleTemtemEvolutionComponent } from './modules/temtem/components/single-temtem-view/single-temtem-body/single-temtem-evolution/single-temtem-evolution.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,11 @@ import { SingleTemtemBodyComponent } from './modules/temtem/components/single-te
     PresentationComponent,
     SingleTemtemViewComponent,
     SingleTemtemBodyComponent,
+    SingleTemtemDetailsComponent,
+    SingleTemtemImageComponent,
+    SingleTemtemLocationsComponent,
+    SingleTemtemDescriptionComponent,
+    SingleTemtemEvolutionComponent,
   ],
   imports: [
     BrowserModule,
