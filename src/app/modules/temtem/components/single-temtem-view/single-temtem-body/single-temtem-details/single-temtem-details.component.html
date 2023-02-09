@@ -1,0 +1,28 @@
+<div class="details types flex items-center justify-between">
+  {{ types.length > 1 ? "Types" : "Type" }}:
+  <div class="flex">
+    <app-type-badge
+      *ngFor="let type of types; trackBy: typeTrackByFn"
+      [type]="type"
+    ></app-type-badge>
+  </div>
+</div>
+<div class="details height flex justify-between">
+  <span>Height:</span> {{ height }} cm
+</div>
+<div class="details weight flex justify-between">
+  <span>Weight:</span> {{ weight }} kg
+</div>
+<div class="details gender flex items-center justify-between">
+  <span>Gender:</span>
+  <div class="flex">
+    <div class="gender female mx-1" *ngIf="gender!.female > 0">
+      <span class="text-lg font-bold">{{ "\&#9792;" }}</span>
+      <span class="text-xs">({{ gender!.female }}%)</span>
+    </div>
+    <div class="gender male mx-1" *ngIf="gender!.male > 0">
+      <span class="text-lg font-bold">{{ "\&#9794;" }}</span>
+      <span class="text-xs">({{ gender!.male }}%)</span>
+    </div>
+  </div>
+</div>

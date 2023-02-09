@@ -1,0 +1,33 @@
+<div id="temtem-image" class="absolute w-full max-h-64">
+  <div
+    class="card-header-buttons flex justify-end pt-2"
+    *ngIf="wikiRenderStaticLumaUrl !== ''"
+  >
+    <button
+      class="mx-1 px-2 rounded-lg text-sm"
+      [ngClass]="{ 'bg-white': !isLuma, 'bg-stone-400': isLuma }"
+      (click)="onLuma(); $event.stopPropagation()"
+    >
+      Orig.
+    </button>
+    <button
+      class="mx-1 px-2 rounded-lg text-sm"
+      [ngClass]="{ 'bg-white': isLuma, 'bg-stone-400': !isLuma }"
+      (click)="onLuma(); $event.stopPropagation()"
+    >
+      Luma
+    </button>
+  </div>
+</div>
+<div *ngIf="isLoading" class="w-64 max-h-32 mx-auto self-center">
+  loading...
+</div>
+<img
+  [ngStyle]="{
+    visibility: isLoading ? 'hidden' : ''
+  }"
+  (load)="onLoad()"
+  class="max-h-32 sm:max-h-60 p-1 sm:pt-7 w-auto mx-auto self-center"
+  loading="lazy"
+  [src]="!isLuma ? wikiRenderAnimatedUrl : wikiRenderAnimatedLumaUrl"
+/>

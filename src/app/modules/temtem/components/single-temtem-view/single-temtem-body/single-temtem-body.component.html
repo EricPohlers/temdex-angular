@@ -1,127 +1,52 @@
 <div
-  class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-2 my-2 px-3"
+  class="temtem-body grid content-center grid-cols-1 sm:grid-cols-4 gap-y-1 sm:gap-y-2 my-2 px-3"
 >
   <div
-    class="relative temtem-full-view col-span-1 flex bg-gray-100 sm:mr-3 rounded-lg border-2 border-amber-500 h-full"
+    class="relative temtem-full-view col-span-1 bg-gray-100 sm:mr-3 rounded-lg border-2 border-amber-500"
   >
-    <div id="temtem-image" class="absolute w-full max-h-64">
-      <div
-        class="card-header-buttons flex justify-end pt-2"
-        *ngIf="temtem?.wikiRenderStaticLumaUrl !== ''"
-      >
-        <button
-          class="mx-1 px-2 rounded-lg text-sm"
-          [ngClass]="{ 'bg-white': !isLuma, 'bg-stone-400': isLuma }"
-          (click)="onLuma(); $event.stopPropagation()"
-        >
-          Orig.
-        </button>
-        <button
-          class="mx-1 px-2 rounded-lg text-sm"
-          [ngClass]="{ 'bg-white': isLuma, 'bg-stone-400': !isLuma }"
-          (click)="onLuma(); $event.stopPropagation()"
-        >
-          Luma
-        </button>
-      </div>
-    </div>
-    <div *ngIf="isLoading" class="w-64 max-h-32 mx-auto self-center">
-      loading...
-    </div>
-    <img
-      [ngStyle]="{
-        visibility: isLoading ? 'hidden' : ''
-      }"
-      (load)="onLoad()"
-      class="max-h-32 sm:max-h-60 p-1 sm:pt-7 w-auto mx-auto self-center"
-      loading="lazy"
-      [src]="
-        !isLuma
-          ? temtem?.wikiRenderAnimatedUrl
-          : temtem?.wikiRenderAnimatedLumaUrl
-      "
-    />
+    <app-single-temtem-image
+      class="w-full h-full flex"
+      [wikiRenderStaticLumaUrl]="temtem?.wikiRenderStaticLumaUrl"
+      [wikiRenderAnimatedUrl]="temtem?.wikiRenderAnimatedUrl"
+      [wikiRenderAnimatedLumaUrl]="temtem?.wikiRenderAnimatedLumaUrl"
+    ></app-single-temtem-image>
   </div>
   <div class="right cols-span-1 sm:col-span-3 self-stretch flex flex-col">
-    <div class="right upper grid grid-cols-1 sm:grid-cols-2 gap-2 h-full">
+    <div
+      class="right upper grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 h-full"
+    >
       <div
         class="px-5 py-2 h-full rounded-lg border-2 border-gray-200 col-span-1"
       >
-        <div class="details types flex items-center justify-between">
-          {{ types.length > 1 ? "Types" : "Type" }}:
-          <app-type-badge
-            *ngFor="let type of types; trackBy: typeTrackByFn"
-            [type]="type"
-          ></app-type-badge>
-        </div>
-        <div class="details height flex justify-between">
-          <span>Height:</span> {{ temtem?.details?.height?.cm }} cm
-        </div>
-        <div class="details weight flex justify-between">
-          <span>Weight:</span> {{ temtem?.details?.weight?.kg }} kg
-        </div>
-        <div class="details gender flex items-center justify-between">
-          <span>Gender:</span>
-          <div class="flex">
-            <div
-              class="gender female mx-1"
-              *ngIf="(temtem?.genderRatio)!.female > 0"
-            >
-              <span class="text-lg font-bold">{{ "\&#9792;" }}</span>
-              <span class="text-xs">({{ temtem!.genderRatio.female }}%)</span>
-            </div>
-            <div
-              class="gender male mx-1"
-              *ngIf="(temtem?.genderRatio)!.male > 0"
-            >
-              <span class="text-lg font-bold">{{ "\&#9794;" }}</span>
-              <span class="text-xs">({{ temtem!.genderRatio.male }}%)</span>
-            </div>
-          </div>
-        </div>
+        <app-single-temtem-details
+          [types]="types"
+          [height]="temtem?.details?.height?.cm"
+          [weight]="temtem?.details?.weight?.kg"
+          [gender]="temtem?.genderRatio"
+        ></app-single-temtem-details>
       </div>
       <div
         class="px-5 py-2 h-full rounded-lg border-2 border-gray-200 col-span-1"
       >
-        <span>Locations:</span>
-        <div *ngFor="let location of temtem?.locations">
-          {{ location.location }}
-        </div>
+        <app-single-temtem-locations
+          [locations]="temtem?.locations"
+        ></app-single-temtem-locations>
       </div>
     </div>
     <div
       *ngIf="evolutionTree.length > 0"
-      class="evolution flex px-5 py-2 h-full mt-2 rounded-lg border-2 border-gray-200 items-center"
+      class="evolution px-5 py-2 h-full mt-1 sm:mt-2 rounded-lg border-2 border-gray-200 items-center"
     >
-      Evolution:
-      <div
-        *ngFor="let evo of evolutionTree"
-        class="flex flex-col px-5 py-2 items-center text-sm"
-      >
-        {{ evo.evolution.level }}
-        <img
-          [ngStyle]="{
-            visibility: isLoadingEvolution ? 'hidden' : ''
-          }"
-          [ngClass]="
-            evo.number === temtem?.number ? 'border-2 border-amber-400' : ''
-          "
-          (load)="onLoadEvolution()"
-          class="max-h-10 sm:max-h-20 w-auto mx-auto self-center cursor-pointer bg-slate-200 rounded-full"
-          loading="lazy"
-          (click)="onSetSelectedTemtem(evo)"
-          [src]="
-            evo.icon === ''
-              ? evo.wikiPortraitUrlLarge
-              : environment.baseUrl + evo.icon
-          "
-        />
-      </div>
+      <app-single-temtem-evolution
+        class="flex h-full"
+        [evolutions]="evolutionTree"
+        [temtemNr]="temtem!.number"
+        [onSetSelectedTemtemCallback]="onSetSelectedTemtem"
+      ></app-single-temtem-evolution>
     </div>
-  </div>
-  <div
-    class="description col-span-1 sm:col-span-4 bg-gray-50 p-5 mb-2 rounded-lg"
-  >
-    {{ temtem?.gameDescription }}
+    <app-single-temtem-description
+      class="col-span-1 sm:col-span-4 bg-gray-50 p-5 my-1 sm:my-2 rounded-lg"
+      [description]="temtem?.gameDescription"
+    ></app-single-temtem-description>
   </div>
 </div>
